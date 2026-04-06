@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<style>
+body {
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg, #232526, #414345);
+    text-align: center;
+    color: white;
+}
+
+.box {
+    margin: 120px auto;
+    width: 300px;
+    padding: 30px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+}
+
+button {
+    padding: 10px;
+    width: 100%;
+    background: #00c6ff;
+    border: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Admin Login</h2>
+
+<form method="POST" action="/login">
+<input name="username" placeholder="Username">
+<input name="password" type="password" placeholder="Password">
+<button>Login</button>
+</form>
+
+</div>
+
+</body>
+</html>

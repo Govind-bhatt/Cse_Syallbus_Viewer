@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+}
+
+/* HEADER */
+.header {
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h2 {
+    margin: 0;
+}
+
+.logout-btn {
+    background: red;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* MAIN CONTAINER */
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+/* CARDS */
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    margin: 20px auto;
+    width: 400px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+/* INPUTS */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 6px;
+    border: none;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.add-btn {
+    background: #00ffcc;
+}
+
+.delete-btn {
+    background: red;
+    color: white;
+}
+
+.update-btn {
+    background: orange;
+    color: white;
+}
+
+/* TABLE */
+table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.1);
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid white;
+}
+
+th {
+    background: rgba(0,0,0,0.5);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h2>Admin Dashboard</h2>
+    <a href="/logout">
+        <button class="logout-btn">Logout</button>
+    </a>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+<!-- ADD SUBJECT -->
+<div class="card">
+    <h3>Add Subject</h3>
+
+    <form action="/add-subject" method="POST" enctype="multipart/form-data">
+        <input name="subject_code" placeholder="Subject Code" required><br>
+        <input name="subject_name" placeholder="Subject Name" required><br>
+        <input name="semester" placeholder="Semester" required><br>
+        <input type="file" name="syllabus" required><br>
+
+        <button class="add-btn">Add Subject</button>
+    </form>
+</div>
+
+<!-- UPLOAD NOTES -->
+<div class="card">
+    <h3>Upload Notes</h3>
+
+    <form action="/upload-note" method="POST" enctype="multipart/form-data">
+        <input name="subject_code" placeholder="Subject Code" required><br>
+        <input type="file" name="file" required><br>
+
+        <button class="add-btn">Upload Note</button>
+    </form>
+</div>
+
+<!-- SUBJECT TABLE -->
+<h3>All Subjects</h3>
+
+<table id="table">
+<tr>
+<th>ID</th>
+<th>Code</th>
+<th>Name</th>
+<th>Actions</th>
+</tr>
+</table>
+
+</div>
+
+<script>
+// Load subjects
+fetch("/subjects")
+.then(res => res.json())
+.then(data => {
+    let html = "";
+
+    data.forEach(s => {
+        html += `
+        <tr>
+            <td>${s.id}</td>
+            <td>${s.subject_code}</td>
+
+            <td>
+                <form action="/update/${s.id}" method="POST">
+                    <input name="subject_name" value="${s.subject_name}">
+                    <button class="update-btn">Update</button>
+                </form>
+            </td>
+
+            <td>
+                <a href="/delete/${s.id}">
+                    <button class="delete-btn">Delete</button>
+                </a>
+            </td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("table").innerHTML += html;
+});
+</script>
+
+</body>
+</html>

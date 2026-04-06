@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin-top: 120px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    width: 350px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+input {
+    padding: 12px;
+    width: 80%;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    padding: 12px;
+    margin-top: 15px;
+    background: #00ffcc;
+    border: none;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Search Subject</h2>
+
+        <input id="code" placeholder="Enter Subject Code">
+        <br>
+        <button onclick="search()">Search</button>
+    </div>
+</div>
+
+<script>
+function search(){
+    let code=document.getElementById("code").value;
+    window.location="subject.html?code="+code;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SDM CSE Viewer</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+.header {
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    width: 350px;
+    margin: auto;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.main-btn {
+    background: #00c6ff;
+    color: black;
+}
+
+.main-btn:hover {
+    background: #0072ff;
+    color: white;
+}
+
+.admin-btn {
+    background: #ff4b2b;
+    color: white;
+}
+
+.admin-btn:hover {
+    background: #ff0000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img src="logo.png" class="logo">
+    <h2>SDM Engineering College Dharwad</h2>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h2>CSE Syllabus Viewer</h2>
+
+        <button class="main-btn" onclick="go()">Search Subjects</button>
+
+        <hr>
+
+        <h3>Admin</h3>
+        <button class="admin-btn" onclick="admin()">Admin Login</button>
+    </div>
+</div>
+
+<script>
+function go(){ window.location="search.html"; }
+function admin(){ window.location="login.html"; }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Subject</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg, #000428, #004e92);
+    color: white;
+    text-align: center;
+}
+
+.card {
+    margin: 80px auto;
+    padding: 30px;
+    width: 350px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+}
+
+a {
+    display: block;
+    margin: 10px;
+    color: #00ffcc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div id="data"></div>
+    <div id="notes"></div>
+</div>
+
+<script>
+let code=new URLSearchParams(window.location.search).get("code");
+
+fetch("/search?code="+code)
+.then(res=>res.json())
+.then(data=>{
+document.getElementById("data").innerHTML=
+`<h3>${data.subject_name}</h3>
+<a href="/uploads/${data.syllabus}" target="_blank">📄 View Syllabus</a>`;
+});
+
+fetch("/notes?code="+code)
+.then(res=>res.json())
+.then(notes=>{
+let html="<h4>Notes</h4>";
+notes.forEach(n=>{
+html+=`<a href="/uploads/${n.file_path}" target="_blank">📥 Download Note</a>`;
+});
+document.getElementById("notes").innerHTML=html;
+});
+</script>
+
+</body>
+</html>
